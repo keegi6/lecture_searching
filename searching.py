@@ -22,6 +22,13 @@ def read_data(file_name, field):
     
     file_path = cwd_path / file_name
 
+    seznam_jmen_json = ['unordered_numbers', 'ordered_numbers', 'dna_sequence']
+    with open(file_name, "r") as file_path:
+        data = json.load(file_path)
+        if field in seznam_jmen_json:
+            return data[field]
+        else:
+            return None
 
 def main():
     pass
