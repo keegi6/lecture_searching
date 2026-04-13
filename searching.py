@@ -1,4 +1,4 @@
-from pathlib import Path
+nfrom pathlib import Path
 import json
 import random
 import time
@@ -101,7 +101,7 @@ def main():
     slovnik_cisla = linear_search(nesarazeny_seznam, hledane_cislo)
     serazeny_seznam = read_data("sequential.json", "ordered_numbers")
     pozice_cisla = binary_search(serazeny_seznam, hledane_cislo)
-
+    return slovnik_cisla, pozice_cisla
 
 
 
