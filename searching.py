@@ -30,9 +30,47 @@ def read_data(file_name, field):
         else:
             return None
 
+
+def linear_search(seznam_cisel, hledane_cislo):
+    slovniok_cisla = {"positions": 0,
+                      "count": 0}
+    seznam_pozic = []
+    count = 0
+    for i, char in enumerate(seznam_cisel):
+        if char == hledane_cislo:
+            seznam_pozic.append(i)
+            count += 1
+    slovniok_cisla["positions"] = seznam_pozic
+    slovniok_cisla["count"] = count
+    return seznam_pozic, count
+
+
+def binary_search(seznam_cisel, hledane_cislo):
+    prvni_prvek = 0
+    posledni_prvek = len(seznam_cisel) - 1
+    serazeny_seznam_cisel = sorted(seznam_cisel)
+    while prvni_prvek <= posledni_prvek:
+        prostredni_prvek = ((posledni_prvek + prvni_prvek) // 2)
+        if serazeny_seznam_cisel[prostredni_prvek] == hledane_cislo:
+            return prostredni_prvek
+        elif serazeny_seznam_cisel[prostredni_prvek] < hledane_cislo:
+            prvni_prvek = prostredni_prvek + 1
+        elif serazeny_seznam_cisel[prostredni_prvek] > hledane_cislo:
+            posledni_prvek = prostredni_prvek - 1
+    return None
+
+
 def main():
-    pass
+    hledane_cislo = 5
+    nesarazeny_seznam = read_data("sequential.json", "unordered_numbers")
+    print(nesarazeny_seznam )
+    slovnik_cisla = linear_search(nesarazeny_seznam, hledane_cislo)
+    serazeny_seznam = read_data("sequential.json", "ordered_numbers")
+    pozice_cisla = binary_search(serazeny_seznam, hledane_cislo)
 
 
-if __name__ == "__main__":
-    main()
+
+
+
+# if __name__ == "__main__":
+#     main()
