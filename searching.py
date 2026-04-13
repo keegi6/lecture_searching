@@ -66,7 +66,7 @@ pocet_prvku = [100, 500, 1000, 5000, 10000]
 linear_casy = []
 binar_casy = []
 for prvek in pocet_prvku:
-    seznam = (random.choices(range(0,100), prvek))
+    seznam = (random.choices(range(0,100), k=prvek))
     hledane_cislo = 5
 
     start1 = time.perf_counter()
