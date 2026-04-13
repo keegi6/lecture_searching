@@ -1,5 +1,8 @@
 from pathlib import Path
 import json
+import random
+import time
+import matplotlib.pyplot as plt
 
 
 def read_data(file_name, field):
@@ -58,6 +61,37 @@ def binary_search(seznam_cisel, hledane_cislo):
         elif serazeny_seznam_cisel[prostredni_prvek] > hledane_cislo:
             posledni_prvek = prostredni_prvek - 1
     return None
+
+pocet_prvku = [100, 500, 1000, 5000, 10000]
+linear_casy = []
+binar_casy = []
+for prvek in pocet_prvku:
+    seznam = (random.choices(range(0,100), prvek))
+    hledane_cislo = 5
+
+    start1 = time.perf_counter()
+    linear_search(seznam, hledane_cislo)
+    end1 = time.perf_counter()
+    duration1 = end1 - start1
+    linear_casy.append(duration1)
+
+    start2 = time.perf_counter()
+    binary_search(seznam, hledane_cislo)
+    end2 = time.perf_counter()
+    duration2 = end2 - start2
+    binar_casy.append(duration2)
+
+plt.plot(pocet_prvku, linear_casy)
+plt.xlabel("Velikost vstupu")
+plt.ylabel("Čas [s]")
+plt.title("Graf měření - lineární search")
+plt.show()
+
+plt.plot(pocet_prvku, binar_casy)
+plt.xlabel("Velikost vstupu")
+plt.ylabel("Čas [s]")
+plt.title("Graf měření - binární search")
+plt.show()
 
 
 def main():
